@@ -1,0 +1,24 @@
+clusterName: "elasticsearch"
+nodeGroup: "master"
+roles:
+  - master
+  - data
+  - ingest
+replicas: 1
+minimumMasterNodes: 1
+image: docker.elastic.co/elasticsearch/elasticsearch
+imageTag: "8.5.1"
+resources:
+  requests:
+    cpu: "1000m"
+    memory: "2Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+volumeClaimTemplate:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 15Gi
+service:
+  type: ClusterIP
